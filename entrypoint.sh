@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+if [[ -n "$INPUT_CA_CERTIFICATE" ]]; then
+  echo "$INPUT_CA_CERTIFICATE" >> /usr/local/share/ca-certificates/mender-server.crt
+fi
+
+update-ca-certificates
+
 mender-artifact write module-image \
   -T deb \
   -n "$INPUT_ARTIFACT_NAME" \

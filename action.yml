@@ -25,6 +25,10 @@ inputs:
     description: 'Password for the user on the server specified in the server_address'
     required: true
     default: ''
+  ca_certificate:
+    description: 'Certificate file for OS mender'
+    required: false
+    default: ''
 
 branding:
   icon: "anchor"
