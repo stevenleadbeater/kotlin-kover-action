@@ -8,7 +8,7 @@ fi
 update-ca-certificates
 
 mender-artifact write module-image \
-  -T deb \
+  -T script \
   -n "$INPUT_ARTIFACT_NAME" \
   -t "$INPUT_DEVICE_TYPE" \
   -o "$INPUT_ARTIFACT_NAME".mender \

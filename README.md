@@ -1,6 +1,6 @@
-# GitHub Action for building `.deb` packages
+# GitHub Action for building `script` packages
 
-Build a .deb package for deploying to hosted or OS mender.io
+Build a script package for deploying to hosted or OS mender.io
 
 ## Inputs
 
@@ -9,7 +9,7 @@ Build a .deb package for deploying to hosted or OS mender.io
 ### `device_type`
 **Required** Device type for categorization of targets in mender
 ### `packages`
-**Required** Space delimited list of deb packages to include in the artifact
+**Required** Space delimited list of script files to include in the artifact
 ### `server_address`
 **Required** Address of the mender server to upload to (defaults to https://hosted.mender.io)
 ### `username`
