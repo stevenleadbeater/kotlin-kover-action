@@ -4,7 +4,7 @@ inputs:
   coverage-threshold:
     description: 'Minimum coverage, below this value will fail'
     required: true
-    default: '80'
+    default: 80
   repo-token:
     description: 'GitHub Token to use to apply comment to PR'
     required: true
