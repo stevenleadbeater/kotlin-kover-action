@@ -28,11 +28,14 @@ runs:
       with:
         java-version: 11
     - name: Grant execute permission for gradlew
+      shell: bash
       run: chmod +x gradlew
     - name: Get coverage
+      shell: bash
       run: ./gradlew koverReport
     - name: Parse coverage
       id: parse_coverage
+      shell: bash
       run: |
         sudo apt -y install libxml2-utils
         xmllint --xpath "string(/report/counter[@type='LINE']/@covered)" build/reports/kover/project-xml/report.xml
@@ -48,6 +51,7 @@ runs:
         echo "::set-output name=class_missed::$(xmllint --xpath "string(/report/counter[@type='CLASS']/@missed)" build/reports/kover/project-xml/report.xml)"
     - name: Calculate coverage
       id: caulculate_coverage_percentage
+      shell: bash
       run: |
         echo "::set-output name=line_coverage::$(awk -v covered="${{steps.parse_coverage.outputs.line_covered}}" -v missed="${{steps.parse_coverage.outputs.line_missed}}" 'BEGIN{printf "%.0f", covered/(missed+covered) * 100}')"
         echo "::set-output name=instruction_coverage::$(awk -v covered="${{steps.parse_coverage.outputs.instruction_covered}}" -v missed="${{steps.parse_coverage.outputs.instruction_missed}}" 'BEGIN{printf "%.0f", covered/(missed+covered) * 100}')"
@@ -56,6 +60,7 @@ runs:
         echo "::set-output name=class_coverage::$(awk -v covered="${{steps.parse_coverage.outputs.class_covered}}" -v missed="${{steps.parse_coverage.outputs.class_missed}}" 'BEGIN{printf "%.0f", covered/(missed+covered) * 100}')"
     - name: Calculate coverage badges
       id: caulculate_coverage_badges
+      shell: bash
       run: |
         echo "::set-output name=line_coverage_marker::$(if ((${{steps.caulculate_coverage_percentage.outputs.line_coverage}}>${{ inputs.coverage-threshold }})); then echo ":heavy_check_mark:"; else echo ":x:"; fi)"
         echo "::set-output name=instruction_coverage_marker::$(if ((${{steps.caulculate_coverage_percentage.outputs.instruction_coverage}}>${{ inputs.coverage-threshold }})); then echo ":heavy_check_mark:"; else echo ":x:"; fi)"
@@ -77,4 +82,5 @@ runs:
         allow-repeats: false
     - name: Check coverage
       if: ${{(steps.caulculate_coverage_percentage.outputs.line_coverage) < ${{ inputs.coverage-threshold }}}}
+      shell: bash
       run: exit "Line coverage expected to be > ${{ inputs.coverage-threshold }} but was ${{steps.caulculate_coverage_percentage.outputs.line_coverage}}" // failure
