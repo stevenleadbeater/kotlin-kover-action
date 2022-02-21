@@ -13,7 +13,7 @@ Run coverage tests, add the result to a PR as a comment and receive the results 
 ## Inputs
 
 ### `coverage-threshold`:
-**Optional** - (default 80) -  The lower limit percentage of coverage for emoticons in the comment and failure threshold for line coverage
+**Optional** - (default 80) -  The lower limit percentage of coverage for emoticons in the comment
 
 ## Outputs
 
@@ -34,5 +34,5 @@ Percentage coverage of classes
 
 ## License
 
-The Dockerfile and associated scripts and documentation in this project are released under the [MIT License](LICENSE-MIT.txt).
+The action and documentation in this project are released under the [MIT License](LICENSE-MIT.txt).
 

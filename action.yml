@@ -83,7 +83,3 @@ runs:
         repo-token: ${{ inputs.repo-token }}
         repo-token-user-login: 'github-actions[bot]'
         allow-repeats: false
-    - name: Check coverage
-      if: ${{(steps.caulculate_coverage_percentage.outputs.line_coverage) < ${{ inputs.coverage-threshold }}}}
-      shell: bash
-      run: exit "Line coverage expected to be > ${{ inputs.coverage-threshold }} but was ${{steps.caulculate_coverage_percentage.outputs.line_coverage}}" // failure
