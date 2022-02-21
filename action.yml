@@ -5,6 +5,9 @@ inputs:
     description: 'Minimum coverage, below this value will fail'
     required: true
     default: '80'
+  repo-token:
+    description: 'GitHub Token to use to apply comment to PR'
+    required: true
 outputs:
   line-coverage:
     description: "Line coverage"
@@ -77,7 +80,7 @@ runs:
           | **Branch**  | ${{(steps.caulculate_coverage_percentage.outputs.branch_coverage)}}  | ${{steps.caulculate_coverage_badges.outputs.branch_coverage_marker}}  |
           | **Method**  | ${{(steps.caulculate_coverage_percentage.outputs.method_coverage)}}  | ${{steps.caulculate_coverage_badges.outputs.method_coverage_marker}}  |
           | **Class**  | ${{(steps.caulculate_coverage_percentage.outputs.class_coverage)}}  | ${{steps.caulculate_coverage_badges.outputs.class_coverage_marker}}  |
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ inputs.repo-token }}
         repo-token-user-login: 'github-actions[bot]'
         allow-repeats: false
     - name: Check coverage
