@@ -1,5 +1,8 @@
 name: 'Kotlin Kover'
 description: 'Code coverage using kotlin, gradle and the kover plugin'
+branding:
+  icon: 'check-square'
+  color: 'green'
 inputs:
   coverage-threshold:
     description: 'Minimum coverage, below this value will fail'
