@@ -2,7 +2,7 @@
 
 Run coverage tests, add the result to a PR as a comment and receive the results as output
 
-##Usage
+## Usage
 make sure you only add this for `pull_request` targets, the bot needs somewhere to put its comments
 ```yaml
 name: Test coverage
