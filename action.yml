@@ -41,7 +41,7 @@ runs:
       run: ./gradlew koverReport
     - name: Parse coverage
       id: parse_coverage
-      uses: ledsys/kover-report-parser-action@0.0.1
+      uses: stevenleadbeater/kover-report-parser-action@0.0.1
     - name: Calculate coverage
       id: caulculate_coverage_percentage
       shell: bash
