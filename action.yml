@@ -38,7 +38,7 @@ runs:
       run: chmod +x gradlew
     - name: Get coverage
       shell: bash
-      run: ./gradlew koverReport
+      run: ./gradlew koverReport --no-daemon
     - name: Parse coverage
       id: parse_coverage
       uses: stevenleadbeater/kover-report-parser-action@0.0.1
