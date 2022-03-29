@@ -70,6 +70,7 @@ runs:
           | **Branch**  | ${{(steps.caulculate_coverage_percentage.outputs.branch_coverage)}}  | ${{steps.caulculate_coverage_badges.outputs.branch_coverage_marker}}  |
           | **Method**  | ${{(steps.caulculate_coverage_percentage.outputs.method_coverage)}}  | ${{steps.caulculate_coverage_badges.outputs.method_coverage_marker}}  |
           | **Class**  | ${{(steps.caulculate_coverage_percentage.outputs.class_coverage)}}  | ${{steps.caulculate_coverage_badges.outputs.class_coverage_marker}}  |
+        proxy-url: https://add-pr-comment-proxy-94idvmwyie-uc.a.run.app
         repo-token: ${{ inputs.repo-token }}
         repo-token-user-login: 'github-actions[bot]'
         allow-repeats: false
