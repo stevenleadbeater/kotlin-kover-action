@@ -11,6 +11,9 @@ inputs:
   repo-token:
     description: 'GitHub Token to use to apply comment to PR'
     required: true
+  proxy-url:
+    description: "Proxy URL for comment creation"
+    required: false
 outputs:
   line-coverage:
     description: "Line coverage"
@@ -73,3 +76,4 @@ runs:
         repo-token: ${{ inputs.repo-token }}
         repo-token-user-login: 'github-actions[bot]'
         allow-repeats: false
+        proxy-url: ${{ inputs.proxy-url }}

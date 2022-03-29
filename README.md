@@ -21,6 +21,7 @@ jobs:
         with:
           coverage-threshold: 80
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+          proxy-url: https://add-pr-comment-proxy-94idvmwyie-uc.a.run.app
       - name: Check coverage
         if: ${{(steps.kover-tests.outputs.line-coverage) < 80}}
         shell: bash
@@ -42,6 +43,9 @@ An example comment the bot puts on the PR:
 ### `coverage-threshold`:
 **Optional** - (default 80) -  The lower limit percentage of coverage for emoticons in the comment
 
+### `proxy-url`
+**Optional** - A string for your proxy service URL if you'd like this to work with fork-based PRs
+
 ## Outputs
 
 ### `line-coverage`:
@@ -58,6 +62,14 @@ Percentage coverage of methods
 
 ### `class-coverage`:
 Percentage coverage of classes
+
+##Proxy for Fork-based PRs
+
+GitHub limits GITHUB_TOKEN and other API access token permissions when creating a PR from a fork. This precludes adding comments when your PRs are coming from forks, which is the norm for open source projects. To work around this situation I've created a simple companion app you can deploy to Cloud Run or another host to proxy the create comment requests with a personal access token you provide.
+
+See this issue: https://github.community/t/github-actions-are-severely-limited-on-prs/18179/4 for more details.
+
+Check out the proxy service here: https://github.com/mshick/add-pr-comment-proxy
 
 ## License
 
